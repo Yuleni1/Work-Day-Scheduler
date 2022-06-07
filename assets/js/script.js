@@ -79,44 +79,52 @@ timeChecker();
 
 
 
-function saveText (currentText){
+function saveText (task){
 
-    localStorage.setItem("entries", currentText);
-   
+    localStorage.setItem("task",JSON.stringify(task) );
 
+
+    var text = localStorage.getItem("task",task);
+    console.log("text", text);
+
+    if(!text){
+        return false;
+      }
+      text = JSON.parse(text);
+      
+    
+     }
+
+
+
+var saveTasks = function(){
+
+document.querySelectorAll("button").forEach(el => el.addEventListener("click",function(){
+    console.log("why did i do this to myself")
+
+    var task = {
+        hrNine: document.querySelector("div#hour-9 input[name='entries']").value,
+        hrTen: document.querySelector("div#hour-10 input[name='entries']").value,
+        hrEleven: document.querySelector("div#hour-11 input[name='entries']").value,
+        hrTwelve: document.querySelector("div#hour-12 input[name='entries']").value,
+        hrThirteen: document.querySelector("div#hour-13 input[name='entries']").value,
+        hrFourteen: document.querySelector("div#hour-14 input[name='entries']").value,
+        hrFifteen: document.querySelector("div#hour-15 input[name='entries']").value,
+        hrSixteen: document.querySelector("div#hour-16 input[name='entries']").value,
+        hrSeventeen: document.querySelector("div#hour-17 input[name='entries']").value
 }
+    
+saveText(task)
+}))
 
-function getText(){
+};
 
-    var b = localStorage.getItem("entries");
-    console.log(b);
-}
+saveTasks();
 
-//button clicked function
+// function getText(){
 
-$("#cont .saveBtn").click(function(){
-    console.log("button was clicked")
+//     var text = JSON.parse(localStorage.getItem("task"));
+//     console.log("text", text);
+// }
 
-})
-
-
-//text area function
-$(".blocks").on("blur","input", function(){
-
-    console.log("text are clicked")
-
-    //get the current value
-
-    var currentText = $(this)
-    .val()
-   .trim()
-   console.log(currentText);
-
-    saveText(currentText);
-   
-
-})
-//save text to local storage
-
-//add on click event to button 
-
+// getText()
